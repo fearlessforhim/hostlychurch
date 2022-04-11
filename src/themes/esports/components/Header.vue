@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        name: "Header"
+        name: "ESportsHeader"
     }
 </script>
 
