@@ -4,11 +4,6 @@
             <div class="contact-message">
                 Get in touch today! 555.555.5555 | your@church.com
             </div>
-            <div class="social-icons">
-                <font-awesome-icon icon="ad"/>
-                <font-awesome-icon icon="bitbucket"/>
-                <font-awesome-icon icon="instagram"/>
-            </div>
         </div>
         <div class="header-bar">
             <div class="header-title">Hostly<span class="colored">.ch</span></div>

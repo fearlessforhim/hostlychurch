@@ -14,7 +14,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: <div>Electric</div>
+    component: () => import(/* webpackChunkName: "about" */ './themes/electric/ElectricHome.vue')
   },
   {
     path: '/classic',
@@ -22,7 +22,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: <div>Classic</div>
+    component: () => import(/* webpackChunkName: "about" */ './themes/classic/ClassicHome.vue')
   },
   {
     path: '/sporty',
@@ -30,7 +30,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: <div>Esports</div>
+    component: () => import(/* webpackChunkName: "about" */ './themes/esports/ESportsHome.vue')
   }
 ];
 

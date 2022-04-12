@@ -1,17 +1,17 @@
 <template>
     <div class="info-card-wrap">
         <InfoCard
-                icon="phone"
+                icon="fa-phone"
                 title="Contact Information"
                 text="Provide your contact information for visitors"
         />
         <InfoCard
-                icon="home"
+                icon="fa-home"
                 title="Location"
                 text="Have your address easily visible"
         />
         <InfoCard
-                icon="clock"
+                icon="fa-clock"
                 title="Service Times"
                 text="Visitors will want to quickly find when you meet"
         />

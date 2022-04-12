@@ -7,9 +7,7 @@
             <div class="header-link">Home</div>
             <div class="header-link">Beliefs</div>
             <div class="header-link">Staff</div>
-            <div class="header-link contact-link">
-                <font-awesome-icon icon="phone"/>
-            </div>
+            <div class="header-link contact-link fa fa-phone"/>
         </div>
     </div>
 </template>

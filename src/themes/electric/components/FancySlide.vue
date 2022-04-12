@@ -1,8 +1,5 @@
 <template>
     <div v-bind:class="['fancy-slide-wrap', slideData.active ? 'active': '']">
-<!--        <div class="img-container">-->
-<!--            <img src="/dts_9.jpg"/>-->
-<!--        </div>-->
         <div class="img-container" v-html="slideData.imgTag"></div>
         <div class="overlay">
             <div class="overlay-info">
@@ -11,9 +8,7 @@
                 </div>
                 <div class="overlay-separator">
                     <div class="left-line"></div>
-                    <div class="line-cross">
-                        <font-awesome-icon icon="cross"/>
-                    </div>
+                    <div class="line-cross fa fa-cross"/>
                     <div class="right-line"></div>
                 </div>
                 <div class="overlay-details">
