@@ -1,12 +1,15 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import {createRouter, createWebHashHistory} from 'vue-router';
+import Home from './Home.vue';
+import VueRouter from 'vue-router'
+
+Vue.config.productionTip = false
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: <div>Home</div>
+    component: Home
   },
   {
     path: '/electric',
@@ -14,7 +17,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: <div>Electric</div>
+    component: () => import(/* webpackChunkName: "about" */ './themes/electric/ElectricHome.vue')
   },
   {
     path: '/classic',
@@ -22,7 +25,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: <div>Classic</div>
+    component: () => import(/* webpackChunkName: "about" */ './themes/classic/ClassicHome.vue')
   },
   {
     path: '/sporty',
@@ -30,17 +33,18 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: <div>Esports</div>
+    component: () => import(/* webpackChunkName: "about" */ './themes/esports/ESportsHome.vue')
   }
 ];
 
-const router = createRouter({
+const router = VueRouter.createRouter({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-  history: createWebHashHistory(),
+  history: VueRouter.createWebHashHistory(),
   routes, // short for `routes: routes`
 });
 
-const app = createApp(App)
-
+const app = Vue.createApp({
+  render: h => h(App)
+});
 app.use(router);
-app.mount('#app')
+app.mount('#app');
