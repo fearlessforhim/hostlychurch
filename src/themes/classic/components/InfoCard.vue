@@ -1,8 +1,11 @@
 <template>
 <div class="info-card">
-  <div class="info-card-icon fa" :class="icon" />
-  <div class="info-card-title">{{title}}</div>
-  <div class="info-card-text">{{text}}</div>
+  <div class="info-card-inner">
+    <div class="info-card-icon fa" :class="icon" />
+    <div class="info-card-title">{{title}}</div>
+    <div class="info-card-text">{{text}}</div>
+  </div>
+
 </div>
 </template>
 
@@ -27,23 +30,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "/src/_bits/_mixins";
 .info-card {
     flex: 1;
     border-radius: 10px;
     margin: 0 10px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 0 10px 51px 3px;
-    height: 300px;
+    height: 100%;
+    box-sizing: border-box;
     cursor: pointer;
+    @include hv_center();
 
     .info-card-icon {
         background: #A0CE4E;
         border-radius: 50%;
         color: white;
-        width: 60px;
-        height: 60px;
+        width: 120px;
+        height: 120px;
         margin: 40px auto 0;
-        font-size: 20px;
+        font-size: 40px;
 
         &:before {
             height: 100%;
@@ -55,17 +61,22 @@ export default {
         }
     }
 
-    .info-card-text {
-        padding-top: 10px;
-    }
-
     .info-card-title {
         padding-top: 10px;
+        font-size: 24px;
+    }
+
+    .info-card-text {
+        padding-top: 10px;
+        font-size: 16px;
     }
 
     &:hover {
+      .info-card-icon {
+        background: darken(#A0CE4E, 20);
+      }
         .info-card-title {
-            color: #A0CE4E;
+            color: darken(#A0CE4E, 20);
         }
     }
 }

@@ -7,7 +7,6 @@
             <div class="header-link">Home</div>
             <div class="header-link">Beliefs</div>
             <div class="header-link">Staff</div>
-            <div class="header-link contact-link fa fa-phone"/>
         </div>
     </div>
 </template>
@@ -25,11 +24,7 @@
         flex-flow: row nowrap;
         justify-content: space-evenly;
         align-items: stretch;
-        position: fixed;
         height: 80px;
-        top: 0;
-        left: 0;
-        right: 0;
         background: $header-bg;
         color: black;
         z-index: 9;
@@ -60,16 +55,14 @@
                 line-height: 80px;
                 flex: 2;
                 text-align: center;
-                border-top: 5px white solid;
 
                 &.contact-link {
                     flex: 1;
                 }
 
                 &:hover {
-                    border-top: 5px #A0CE4E solid;
+                    box-shadow: 0px 5px #A0CE4E inset;
                     color: #A0CE4E;
-                    padding-top: -5px;
                 }
             }
         }

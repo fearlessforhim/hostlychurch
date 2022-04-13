@@ -8,12 +8,12 @@
         <InfoCard
                 icon="fa-home"
                 title="Location"
-                text="Have your address easily visible"
+                :text="`${churchInfo.address.street} ${churchInfo.address.cityState}`"
         />
         <InfoCard
                 icon="fa-clock"
                 title="Service Times"
-                text="Visitors will want to quickly find when you meet"
+                :text="churchInfo.serviceTimes.join(', ')"
         />
     </div>
 </template>
@@ -23,7 +23,13 @@
 
     export default {
         name: "InfoCards",
-        components: {InfoCard}
+        components: {InfoCard},
+        props: {
+          churchInfo: {
+            type: Object,
+            required: true
+          }
+        }
     }
 </script>
 
@@ -31,6 +37,8 @@
     .info-card-wrap {
         width: 100%;
         display: flex;
-        padding-top: 50px;
+        margin-top: 50px;
+        padding: 10px;
+        box-sizing: border-box;
     }
 </style>
