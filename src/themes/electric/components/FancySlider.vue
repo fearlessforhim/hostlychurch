@@ -1,11 +1,9 @@
 <template>
-  <div class="slider-wrap">
-    <div class="slider-select">
-      <div class="left-arrow fa fa-chevron-left" />
-      <div class="right-arrow fa fa-chevron-right" @click="nextSlide" />
-    </div>
-    <FancySlide v-for="(s) in slideList" :key="s.id" :slide-data="s" />
-  </div>
+<div class="slider-wrap-inner">
+  <div class="slide-select left-arrow fa fa-chevron-left" @click="previousSlideClick" />
+  <div class="slide-select right-arrow fa fa-chevron-right" @click="nextSlideClick" />
+  <FancySlide v-for="(s) in slideList" :key="s.id" :slide-data="s" :active="s.id === activeSlideIdx" />
+</div>
 </template>
 
 <script>
@@ -23,71 +21,108 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      activeSlideIdx: 0,
+      timeout: null
+    }
   },
   mounted() {
-    setInterval(() => this.nextSlide(), 10000)
+    this.timeout = setInterval(() => this.nextSlide(), 15000)
   },
   methods: {
+    nextSlideClick() {
+      clearTimeout(this.timeout);
+      this.nextSlide();
+      this.timeout = setInterval(() => this.nextSlide(), 15000)
+    },
+    previousSlideClick() {
+      clearTimeout(this.timeout);
+      this.previousSlide();
+      this.timeout = setInterval(() => this.nextSlide(), 15000)
+    },
     nextSlide() {
-      let currentActive = this.slideList.filter((s) => s.active)[0];
-      currentActive.active = false;
-      let currentActiveId = currentActive.id;
-      let nextActiveId = currentActiveId + 1;
+      let nextActiveId = this.activeSlideIdx + 1;
       if (nextActiveId >= this.slideList.length) {
         nextActiveId = 0;
       }
-      this.slideList.filter((s) => s.id === nextActiveId)[0].active = true;
+      this.activeSlideIdx = nextActiveId;
     },
     previousSlide() {
-      let currentActive = this.slideList.filter((s) => s.active)[0];
-      currentActive.active = false;
-      let currentActiveId = currentActive.id;
-      let nextActiveId = currentActiveId - 1;
+      let nextActiveId = this.activeSlideIdx - 1;
       if (nextActiveId < 0) {
         nextActiveId = this.slideList.length - 1;
       }
-      this.slideList.filter((s) => s.id === nextActiveId)[0].active = true
+      this.activeSlideIdx = nextActiveId;
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.slider-wrap {
-    height: 450px;
+@import '/src/_bits/_mixins';
+.slider-wrap-inner {
+    height: 100%;
+    position: relative;
 
-    .slider-select {
-        position: relative;
+    .slide-select {
+        width: 50px;
+        position: absolute;
         top: 0;
-        right: 0;
-        left: 0;
         bottom: 0;
+        z-index: 8;
 
-        .left-arrow,
-        .right-arrow {
-            top: 0;
-            bottom: 0;
-            color: white;
-            font-size: 40px;
-            position: absolute;
-            z-index: 8;
-            line-height: 400px;
-            padding: 0 20px;
-            cursor: pointer;
-
-            &:hover {
-                color: darken(white, 10);
-            }
+        &.left-arrow {
+          left: 0;
         }
 
-        .left-arrow {
-            left: 0;
+        &.right-arrow {
+          right: 0;
         }
 
-        .right-arrow {
-            right: 0;
+        &:before {
+          height: 100%;
+          color:white;
+          font-size: 40px;
+          @include hv_center();
+        }
+
+        &:hover {
+          background: rgba(0,0,0, .2);
         }
     }
+    // .slider-select {
+    //     position: relative;
+    //     top: 0;
+    //     right: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //
+    //     .left-arrow,
+    //     .right-arrow {
+    //         top: 0;
+    //         bottom: 0;
+    //         color: white;
+    //         font-size: 40px;
+    //         position: absolute;
+    //         z-index: 8;
+    //         width: 50px;
+    //         line-height: 400px;
+    //         padding: 0 20px;
+    //         cursor: pointer;
+    //         background: rgba(0,0,0, .5);
+    //
+    //         &:hover {
+    //             color: darken(white, 10);
+    //         }
+    //     }
+    //
+    //     .left-arrow {
+    //         left: 0;
+    //     }
+    //
+    //     .right-arrow {
+    //         right: 0;
+    //     }
+    // }
 }
 </style>

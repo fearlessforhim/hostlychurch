@@ -1,25 +1,19 @@
 <template>
-    <div class="header-wrap">
-        <div class="header-title">
-            {{churchName}}
-        </div>
-        <div class="header-links">
-            <div class="header-link">Home</div>
-            <div class="header-link">What We Believe</div>
-            <div class="header-link">Staff</div>
-        </div>
-        <div class="contact-link-wrap">
-            <div class="contact-link">Contact</div>
+    <div class="footer-wrap">
+        <div class="service-times">
+          <div v-for="(s) in serviceTimes" :key="s">
+            {{s}}
+          </div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "HeaderBar",
+        name: "FooterBar",
         props: {
-          churchName: {
-            type: String,
+          serviceTimes: {
+            type: Array,
             required: true
           }
         }
@@ -28,7 +22,7 @@
 
 <style scoped lang="scss">
     $header-bg: #2c3e50;
-    .header-wrap {
+    .footer-wrap {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-evenly;
