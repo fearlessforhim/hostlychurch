@@ -101,6 +101,7 @@ export default {
                 opacity: 0;
                 transition: opacity 3s;
                 font-size: 16px;
+                margin-top: 20px;
             }
         }
     }

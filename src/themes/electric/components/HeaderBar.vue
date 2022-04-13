@@ -1,15 +1,15 @@
 <template>
     <div class="header-wrap">
-        <div class="header-title">
+        <div class="header-title" @click="this.$emit('setLocation', 'home')">
             {{churchName}}
         </div>
         <div class="header-links">
-            <div class="header-link">Home</div>
-            <div class="header-link">What We Believe</div>
-            <div class="header-link">Staff</div>
+            <div class="header-link" @click="this.$emit('setLocation', 'home')">Home</div>
+            <div class="header-link" @click="this.$emit('setLocation', 'believe')">What We Believe</div>
+            <div class="header-link" @click="this.$emit('setLocation', 'staff')">Staff</div>
         </div>
         <div class="contact-link-wrap">
-            <div class="contact-link">Contact</div>
+            <a href="mailto:jonathancameron6@pm.me"><div class="contact-link">Contact</div></a>
         </div>
     </div>
 </template>
@@ -73,9 +73,20 @@
             flex: 1;
             padding: 24px 10px;
             text-align: center;
+
+            a:link { text-decoration: none; }
+
+            a:visited { text-decoration: none; }
+
+            a:hover { text-decoration: none; }
+
+            a:active { text-decoration: none; }
+
             .contact-link {
                 border-radius: 4px;
                 background: orange;
+                color: white;
+                text-decoration: none;
                 &:hover {
                     background: darken($contact-btn-color, 5    );
                 }
