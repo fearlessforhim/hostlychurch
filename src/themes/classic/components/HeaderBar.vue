@@ -4,9 +4,9 @@
             Hostly<span class="colored">.ch</span>
         </div>
         <div class="header-links">
-            <div class="header-link">Home</div>
-            <div class="header-link">Beliefs</div>
-            <div class="header-link">Staff</div>
+            <div class="header-link" @click="this.$emit('setLocation', 'home')">Home</div>
+            <div class="header-link" @click="this.$emit('setLocation', 'believe')">Beliefs</div>
+            <div class="header-link" @click="this.$emit('setLocation', 'staff')">Staff</div>
         </div>
     </div>
 </template>

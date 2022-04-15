@@ -17,14 +17,6 @@ export default {
     churchInfo: {
       type: Object,
       required: true
-    },
-    believeBullets: {
-      type: Array,
-      required: true
-    },
-    staffBios: {
-      type: Array,
-      required: true
     }
   },
   components: {

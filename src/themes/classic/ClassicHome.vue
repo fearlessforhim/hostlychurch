@@ -1,13 +1,13 @@
 <template>
 <div class="classic-wrap">
-  <HeroHeader/>
+  <HeroHeader />
   <div class="header-bar-wrap">
-    <HeaderBar />
+    <HeaderBar @setLocation="setLocation" />
   </div>
   <div class="page-content-wrap">
-    <LandingContent
-      :churchInfo="churchInfo"
-    />
+    <LandingContent :churchInfo="churchInfo" v-if="selectedTab === 'home'" />
+    <BelievePage v-if="selectedTab === 'believe'" :believeBullets="believeBullets" />
+    <StaffPage v-if="selectedTab === 'staff'" :staffBios="staffBios"/>
   </div>
 </div>
 </template>
@@ -16,6 +16,8 @@
 import HeaderBar from "@/themes/classic/components/HeaderBar";
 import LandingContent from "@/themes/classic/components/LandingContent";
 import HeroHeader from "@/themes/classic/components/HeroHeader";
+import BelievePage from "@/themes/classic/components/BelievePage";
+import StaffPage from "@/themes/classic/components/StaffPage";
 
 export default {
   name: "ClassicHome",
@@ -31,16 +33,24 @@ export default {
     staffBios: {
       type: Array,
       required: true
-    },
-    cardInfo: {
-      type: Array,
-      required: true
+    }
+  },
+  data: () => {
+    return {
+      selectedTab: 'home'
+    }
+  },
+  methods: {
+    setLocation(l) {
+      this.selectedTab = l;
     }
   },
   components: {
     LandingContent,
     HeaderBar,
-    HeroHeader
+    HeroHeader,
+    BelievePage,
+    StaffPage
   }
 }
 </script>
@@ -52,12 +62,13 @@ export default {
     display: flex;
     flex-direction: column;
     .header-bar-wrap {
-      z-index: 1;
+        z-index: 1;
     }
 
     .page-content-wrap {
-      flex: 1;
-      z-index: 1;
+        flex: 1;
+        z-index: 1;
+        overflow: auto;
     }
 }
 </style>
